@@ -1,0 +1,8 @@
+.remove {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  color: rgb(241 23 23);
+  cursor: pointer;
+}

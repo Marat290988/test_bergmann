@@ -1,0 +1,63 @@
+
+<div class="panel-container">
+
+  <form class="flex items-center p-[12px] w-full h-full gap-3 flex-wrap" [formGroup]="formGroup">
+
+    <mat-form-field>
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [formGroup]="formGroup" [rangePicker]="picker" [min]="min" [max]="max">
+        <input matStartDate formControlName="start" placeholder="Start date" readonly>
+        <input matEndDate formControlName="end" placeholder="End date" readonly (dateChange)="onDateChange()">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Chart type</mat-label>
+        <mat-select formControlName="typeChart">
+          <mat-option *ngFor="let item of typeChart" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Color</mat-label>
+        <mat-select formControlName="color" panelClass="color-select">
+          <mat-option *ngFor="let item of color" [value]="item" [ngStyle]="{backgroundColor: item}">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Sensor</mat-label>
+        <mat-select formControlName="sensor" panelClass="color-select">
+          <mat-option *ngFor="let item of sensorData" [value]="item.name">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Chart</mat-label>
+        <mat-select formControlName="chart" panelClass="color-select" (selectionChange)="onChartChange($event)">
+          <mat-option *ngFor="let item of chartData" [value]="item.chartName">
+            {{item.chartName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button (click)="addHandler()" mat-button color="primary" [disabled]="formGroup.status === 'INVALID'">ADD</button>
+  </form>
+
+</div>

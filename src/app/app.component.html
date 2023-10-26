@@ -1,0 +1,26 @@
+
+<main class="main h-full p-[20px]">
+  <app-panel
+    [sensorData]="sensorData"
+    [chartData]="chartData"
+    [chartDataChange$]="chartDataChange$"
+  ></app-panel>
+  <div class="flex flex-wrap w-full mt-5">
+    <ng-container
+      *ngFor="let chart of chartData"
+    >
+      <ng-container *ngIf="chart.chartName !== 'Add new'">
+        <app-chart
+          [chartDataChange$]="chartDataChange$"
+          [chartItem]="chart"
+          [sensorData]="sensorData"
+          (removeChart)="onRemoveChart($event)"
+        >
+        </app-chart>
+      </ng-container>
+    </ng-container>
+  </div>
+</main>
+
+
+
